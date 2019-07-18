@@ -1,6 +1,18 @@
 <template>
   <v-app>
       <v-container>
+          <v-responsive>
+                <v-container fill-height>
+                <v-layout align-center>
+                    <v-flex>
+                        <h3 class="display-3">תוצאות המבחן</h3>
+                        <span class="subheading">בעמוד זה יוצג התוצאות של המבחן לפני החישוב לפי גיל או כיתה</span>
+                        <v-divider class="my-3"></v-divider>
+                        <div class="title mb-3"></div>
+                    </v-flex>
+                </v-layout>
+                </v-container>
+            </v-responsive>
           <v-layout row wrap align-center justify-center>
               <v-flex xs12 md8>
                   <!--open req nav-->
