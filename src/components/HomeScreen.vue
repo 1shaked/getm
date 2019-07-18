@@ -7,13 +7,21 @@
                   <v-btn block color='cyan lighten-2'
                   class="button"
                    to="/login">
-                      פתיחת בקשה
+                      הרשמה
                   </v-btn>
               </v-flex>
               <v-flex xs12 md8>
                   <!--req in prograss nav-->
                   <v-btn color='deep-orange lighten-3' block class="button">
                       בקשות בתהליך
+                  </v-btn>
+              </v-flex>
+              <v-flex xs12 md8>
+                  <!--open req nav-->
+                  <v-btn block color='cyan lighten-5'
+                  class="button"
+                   to="/open_req">
+                      יצירת בקשה
                   </v-btn>
               </v-flex>
           </v-layout>
