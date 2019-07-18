@@ -10,9 +10,9 @@
                         <v-divider class="my-3"></v-divider>
                         <div class="title mb-3"></div>
                         <router-link to="/login">
-                            <v-brn>
+                            <v-btn>
                                 <div class="link">כניסה</div>
-                            </v-brn>
+                            </v-btn>
                         </router-link>
                     </v-flex>
                 </v-layout>
@@ -32,7 +32,8 @@
               </v-flex>
               <v-flex xs12 md8>
                   <!--req in prograss nav-->
-                  <v-btn color='deep-orange lighten-3' block class="button">
+                  <v-btn color='deep-orange lighten-3' block class="button"
+                  to="/reqested_rides">
                       בקשות בתהליך
                   </v-btn>
               </v-flex>
@@ -69,6 +70,7 @@ export default {
         ]),
     },
 }
+//this.$router.push({ path: 'StudentProfile' });
 </script>
 <style scoped>
 .button {

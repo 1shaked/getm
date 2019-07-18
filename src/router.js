@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import OpenRequest from './views/OpenRequest.vue'
 import signUp from './views/signUp.vue'
+import RequestedRides from './views/ReqestedRides.vue'
 
 Vue.use(Router)
 /* eslint-disable */
@@ -28,6 +29,11 @@ export default new Router({
       path: '/open_req',
       name: 'open_req',
       component: OpenRequest
+    },
+    {
+      path : "/requested_rides",
+      name : 'requested_rides',
+      component : RequestedRides
     },
     {
       path: '/about',

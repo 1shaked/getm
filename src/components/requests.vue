@@ -1,15 +1,11 @@
 <template>
-    <v-app>
-        <span>
-            gfdgfdgfd fdg dfg
-        </span>
-        <requests />
-    </v-app>
+    <v-container>
+        {{ requests }}
+    </v-container>
 </template>
 <script>
 /* eslint-disable */
 import { mapActions, mapState , mapGetters} from 'vuex'
-import requests from './../components/requests'
 export default {
     data() {
         return {
@@ -20,11 +16,11 @@ export default {
         
     },
     computed: {
-        
+        ...mapState([
+            'requests'
+        ])
     },
-    components : {
-        requests
-    }
+    
 }
 </script>
 <style scoped>
