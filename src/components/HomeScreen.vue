@@ -23,7 +23,7 @@
                   <!--open req nav-->
                   <v-btn block color='cyan lighten-2'
                   class="button"
-                   to="/login">
+                   to="/sign_up">
                       הרשמה
                   </v-btn>
               </v-flex>
