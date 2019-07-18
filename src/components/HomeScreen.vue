@@ -33,7 +33,7 @@
               <v-flex xs12 md8>
                   <!--req in prograss nav-->
                   <v-btn color='deep-orange lighten-3' block class="button"
-                  to="/reqested_rides">
+                  to="/requested_rides">
                       בקשות בתהליך
                   </v-btn>
               </v-flex>

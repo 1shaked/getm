@@ -14,7 +14,10 @@ export default new Vuex.Store({
         comments : 'קצינים חדשים צריכים לעשות תופס טיולים יוצא',
         start_from : 'תל השומר',
         destination : 'צריפין',
-        time : '2019-12-2'
+        time : '2019-12-2',
+        user_name : 'שקד',
+        phone : '0585525255',
+        mail : 'shaked1hen@gmail.com'
       },
       {
         tranfer_type : 'eqe',
@@ -22,7 +25,10 @@ export default new Vuex.Store({
         comments : 'ציוד סופר אקסטרה מסווג',
         start_from : 'עיר הבהדים',
         destination : 'קרייה',
-        time : '2019-12-1'
+        time : '2019-12-1',
+        user_name : 'David',
+        phone : '0526642723',
+        mail : 'henDavid@gmail.com'
       },
       {
         tranfer_type : 'people',
@@ -30,7 +36,10 @@ export default new Vuex.Store({
         comments : 'מפקדי קורס קצינים',
         start_from : 'גלילות',
         destination : 'שיטפון',
-        time : '2019-12-2'
+        time : '2019-12-2',
+        user_name : 'משה',
+        phone : '0542242933',
+        mail : 'mosh@gmail.com'
       },
       {
         tranfer_type : 'eqe',
@@ -38,7 +47,10 @@ export default new Vuex.Store({
         comments : 'ציוד סופר אקסטרה מסווג',
         start_from : 'עיר הבהדים',
         destination : 'שיטפון',
-        time : '2019-12-1'
+        time : '2019-12-1',
+        user_name : 'רותי',
+        phone : '051224272',
+        mail : 'RotiHagag@gmail.com'
       }
     ]
   },

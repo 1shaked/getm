@@ -1,9 +1,20 @@
 <template>
     <v-app>
-        <span>
-            gfdgfdgfd fdg dfg
-        </span>
-        <requests />
+        <v-container>
+            <v-responsive>
+                <v-container fill-height>
+                <v-layout align-center>
+                    <v-flex>
+                        <h3 class="display-3">GetM</h3>
+                        <span class="subheading">פה תמצאו את כ הבקשות של אנשים למעבר</span>
+                        <v-divider class="my-3"></v-divider>
+                        <div class="title mb-3"></div>
+                    </v-flex>
+                </v-layout>
+                </v-container>
+            </v-responsive>
+            <requests />
+        </v-container>
     </v-app>
 </template>
 <script>
