@@ -5,10 +5,15 @@
                 <v-container fill-height>
                 <v-layout align-center>
                     <v-flex>
-                        <h3 class="display-3">תוצאות המבחן</h3>
-                        <span class="subheading">בעמוד זה יוצג התוצאות של המבחן לפני החישוב לפי גיל או כיתה</span>
+                        <h3 class="display-3">GetM</h3>
+                        <span class="subheading">להגיע לבסיס / לעבור ממקום למקום זו האפליקציה בישבילכם!!!</span>
                         <v-divider class="my-3"></v-divider>
                         <div class="title mb-3"></div>
+                        <router-link to="/login">
+                            <v-brn>
+                                <div class="link">הרשמה</div>
+                            </v-brn>
+                        </router-link>
                     </v-flex>
                 </v-layout>
                 </v-container>
