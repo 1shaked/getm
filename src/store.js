@@ -15,9 +15,17 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-
+    LogInM:(state , user) =>
+    {
+      console.log(`get req to check if the user is valid`);
+      state.user_name = user.user_name;
+      state.password  = user.password;
+    }
   },
   actions: {
-
+    LogIn({commit} , user)
+    {
+      commit('LogInM' , user);
+    }
   }
 })

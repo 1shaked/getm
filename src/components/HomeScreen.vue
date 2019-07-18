@@ -19,7 +19,10 @@
                 </v-container>
             </v-responsive>
           <v-layout row wrap align-center justify-center>
-              <v-flex xs12 md8>
+              <v-flex xs12>
+                  <HelloUser />
+              </v-flex>
+              <v-flex xs12 md8 v-if="!IsLogedIn">
                   <!--open req nav-->
                   <v-btn block color='cyan lighten-2'
                   class="button"
@@ -48,8 +51,10 @@
 <script>
 /* eslint-disable */
 import { mapActions, mapState , mapGetters} from 'vuex'
+import HelloUser from './HelloUser'
 export default {
     components : {
+        HelloUser
     },
     data() {
         return {
