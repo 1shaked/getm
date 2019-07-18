@@ -11,7 +11,7 @@
                         <div class="title mb-3"></div>
                         <router-link to="/login">
                             <v-brn>
-                                <div class="link">הרשמה</div>
+                                <div class="link">כניסה</div>
                             </v-brn>
                         </router-link>
                     </v-flex>
@@ -33,7 +33,7 @@
                       בקשות בתהליך
                   </v-btn>
               </v-flex>
-              <v-flex xs12 md8>
+              <v-flex xs12 md8 v-if="IsLogedIn">
                   <!--open req nav-->
                   <v-btn block color='cyan lighten-5'
                   class="button"
@@ -47,6 +47,7 @@
 </template>
 <script>
 /* eslint-disable */
+import { mapActions, mapState , mapGetters} from 'vuex'
 export default {
     components : {
     },
@@ -58,7 +59,9 @@ export default {
         
     },
     computed: {
-        
+        ...mapGetters([
+            'IsLogedIn'
+        ]),
     },
 }
 </script>
