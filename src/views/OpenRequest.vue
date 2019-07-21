@@ -3,10 +3,10 @@
     <v-container>
       <h2>transfer {{transfer}}</h2>
         <v-card dark color="secondary">
-                <v-btn block=ture color="success"  v-on:click="transfer = 'people'">אנשים</v-btn>
+                <v-btn color="success"  v-on:click="transfer = 'people'">אנשים</v-btn>
         </v-card>
         <v-card dark color="secondary">
-                <v-btn block=ture color="info" v-on:click="transfer = 'eqe'">ציוד</v-btn>
+                <v-btn color="info" v-on:click="transfer = 'eqe'">ציוד</v-btn>
         </v-card>
         <hr>
         <v-layout row wrap>

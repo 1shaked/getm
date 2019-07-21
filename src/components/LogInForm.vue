@@ -51,7 +51,8 @@ export default {
     {
       let user_name = this.user_name;
       let password = this.password
-      alert(`loged in ${user_name} and ${password}`)
+      //alert(`loged in ${user_name} and ${password}`);
+      this.$router.push({ path: '/' });
       this.LogIn({user_name , password})
     }
   },

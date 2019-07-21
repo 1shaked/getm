@@ -66,12 +66,32 @@ export default new Vuex.Store({
       console.log(`get req to check if the user is valid`);
       state.user_name = user.user_name;
       state.password  = user.password;
+    },
+    OpenRequestM:(state , request) =>
+    {
+      console.log(`Open request to ride`);
+      //TODO:add the part where i get mail and password
+      console.log(request);
+      
+      let request_deatils = {
+        user_name : state.user_name,
+        tranfer_type : request.tranfer_type,
+        tranfer_carray : request.tranfer_carray,
+        comments : request.comments,
+        destination : request.destination,
+        start_from : request.start_from,
+      }
+      state.requests.push(request_deatils);
     }
   },
   actions: {
     LogIn({commit} , user)
     {
       commit('LogInM' , user);
+    },
+    OpenRequest({commit} , request)
+    {
+      commit('OpenRequestM' , request);
     }
   }
 })

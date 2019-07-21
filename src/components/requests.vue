@@ -1,6 +1,51 @@
 <template>
     <v-container>
-        {{ requests }}
+        <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+                <v-card>
+                    <v-list two-line>
+                    <template v-for="(item, index) in requests">
+                        <v-list-tile v-on:click="ChooseReques(item)"
+                        :key="index"
+                        avatar
+                        >
+                        <v-list-tile-content>
+                            <v-list-tile-title>
+                                <!--v-html="item.tranfer_carray"-->
+                                {{ item.user_name }}
+                            </v-list-tile-title>
+                            <v-list-tile-sub-title>
+                                {{ item.tranfer_type }} -- {{ item.tranfer_carray }}
+                                <div></div>
+                                מ{{ item.start_from }} : ל{{ item.destination }}
+                            </v-list-tile-sub-title>
+                        </v-list-tile-content>
+                        </v-list-tile>
+                    </template>
+                    </v-list>
+                </v-card>
+            </v-flex>
+            <!--chosen reques-->
+            <v-flex xs12 sm6>
+                <v-card dark>
+                    <v-card-title>
+                        {{Chosen_request.user_name}} מבקש להעביר {{ Chosen_request.tranfer_type}}
+                    </v-card-title>
+                    <v-card-text>
+                        הגודל של המשלוח הוא : {{Chosen_request.tranfer_carray}}
+                        <br>
+                        הנסיעה היא מ{{Chosen_request.start_from}} עד {{Chosen_request.destination}}
+                        <br>
+                        מסר מהנוסע : {{ Chosen_request.comments }}
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn>
+                            צור קשר
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 <script>
@@ -9,16 +54,33 @@ import { mapActions, mapState , mapGetters} from 'vuex'
 export default {
     data() {
         return {
-            
+            Chosen_request : {
+                tranfer_type : 'eqe',
+                tranfer_carray : 'גדול',
+                comments : 'ציוד סופר אקסטרה מסווג',
+                start_from : 'עיר הבהדים',
+                destination : 'שיטפון',
+                time : '2019-12-1',
+                user_name : 'רותי',
+                phone : '051224272',
+                mail : 'RotiHagag@gmail.com'
+            }
         }
     },
     methods: {
-        
+        ChooseReques(request)
+        {
+            this.Chosen_request = request;
+        }
     },
     computed: {
         ...mapState([
             'requests'
-        ])
+        ]),
+        Request()
+        {
+            return this.Chosen_request
+        }
     },
     
 }
