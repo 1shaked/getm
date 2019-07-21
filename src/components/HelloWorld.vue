@@ -85,7 +85,8 @@
 </template>
 
 <script>
-  export default {
+/* eslint-disable */
+export default {
     data: () => ({
       ecosystem: [
         {

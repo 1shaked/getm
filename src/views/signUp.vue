@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <v-container>
-        <h1>יצירת נסיעה</h1>
+        <h1>יצירת משתמש</h1>
         <!--The signUpForm in Form will go here-->
         <signUpForm />
     </v-container>

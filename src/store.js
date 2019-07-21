@@ -1,12 +1,23 @@
+/* eslint-disable */
 import Vue from 'vue'
 import Vuex from 'vuex'
+const axios = require('axios');
+
 
 Vue.use(Vuex)
-/* eslint-disable */
 export default new Vuex.Store({
   state: {
     user_name : null,
     password : null,
+    user : {
+      /*
+        Email : 'someMail.com',
+        Phone : '055005050',
+        FirstName : 'myFname',
+        LastName : 'LName',
+        password : 'Password',
+      */
+    },
     requests : [
       {
         tranfer_type : 'people',
@@ -57,31 +68,78 @@ export default new Vuex.Store({
   getters : {
     IsLogedIn : (state) =>
     {
-      return state.user_name != null && state.password != null
+      return Object.keys(state.user).length != 0;
     }
   },
   mutations: {
     LogInM:(state , user) =>
     {
       console.log(`get req to check if the user is valid`);
-      state.user_name = user.user_name;
-      state.password  = user.password;
+      let params =  {FirstName : user.user_name , Password : user.password};
+      axios.get('/api/rides/get/user' , {params})
+      .then(respond =>
+        {
+          console.log(respond);
+          if (respond.data.length > 0)
+          {
+            Vue.set(state , 'user' , respond.data[0]);
+          }
+          else
+          {
+            Vue.set(state , 'user' , {});
+          }
+        });
+      //state.user_name = user.user_name;
+      //state.password  = user.password;
     },
     OpenRequestM:(state , request) =>
     {
       console.log(`Open request to ride`);
       //TODO:add the part where i get mail and password
+      //TODO:send axios post requst
       console.log(request);
       
       let request_deatils = {
-        user_name : state.user_name,
+        user_name : state.user.FirstName,
         tranfer_type : request.tranfer_type,
         tranfer_carray : request.tranfer_carray,
         comments : request.comments,
         destination : request.destination,
         start_from : request.start_from,
-      }
+        Email : state.user.Email,
+        Phone : state.user.Phone
+      };
+
+      let data_to_server = {
+        tranfer_type : request.tranfer_type,
+        tranfer_carray : request.tranfer_carray,
+        comments : request.comments,
+        destination : request.destination,
+        start_from : request.start_from,
+        ID : state.user.ID
+      };
+
+      axios.post('/api/rides/posts/new_requst' , data_to_server)
+      .then(respond =>
+        {
+          console.log(respond);
+        })
       state.requests.push(request_deatils);
+    },
+    SignUpM:(state , user) =>
+    {
+      console.log(user);
+      axios.post('/api/rides/posts/new_user' , user)
+      .then(respond => 
+        {
+          console.log(respond);
+          if (respond.status == 200)
+          {
+            Vue.set(state  , 'user' , user);
+            state.user_name = user.FirstName;
+            state.password = user.Password;
+          }
+        });
     }
   },
   actions: {
@@ -92,6 +150,10 @@ export default new Vuex.Store({
     OpenRequest({commit} , request)
     {
       commit('OpenRequestM' , request);
+    },
+    SignUp({commit} , user)
+    {
+      commit('SignUpM' , user);
     }
   }
 })
