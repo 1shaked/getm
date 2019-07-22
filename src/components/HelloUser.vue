@@ -8,7 +8,6 @@
                         <span class="subheading">מקווה שתמצא את הטרמפ שאתה מחפש במהרה או שתעשה טובה למישהו</span>
                         <v-divider class="my-3"></v-divider>
                         <div class="title mb-3"></div>
-                        {{user}}
                     </v-flex>
                 </v-layout>
                 </v-container>

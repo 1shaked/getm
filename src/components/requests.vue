@@ -15,9 +15,7 @@
                                 {{ item.FirstName }}
                             </v-list-tile-title>
                             <v-list-tile-sub-title>
-                                <span v-if="item.tranfer_type == 'eqe'">
-                                    ציוד 
-                                </span>
+                                <span v-if="item.tranfer_type == 'eqe'">ציוד</span>
                                 <span v-else-if="item.tranfer_type == 'people'">
                                     אנשים
                                 </span>
@@ -35,9 +33,8 @@
             <v-flex xs12 sm6>
                 <v-card dark>
                     <v-card-title>
-                        {{Chosen_request.FirstName}} 
-                        <span v-if="Chosen_request.tranfer_type == 'eqe'">מבקש להעביר ציוד </span>
-                        <span v-else-if="Chosen_request.tranfer_type == 'people'">מבקש להעביר אנשים </span>
+                        <span v-if="Chosen_request.tranfer_type == 'eqe'">מבקש להעביר ציוד {{Chosen_request.FirstName}} </span>
+                        <span v-else-if="Chosen_request.tranfer_type == 'people'">מבקש להעביר אנשים {{Chosen_request.FirstName}} </span>
                     </v-card-title>
                     <v-card-text>
                         הגודל של המשלוח הוא : {{ Chosen_request.carry }}

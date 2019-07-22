@@ -20,7 +20,6 @@
             </v-responsive>
           <v-layout row wrap align-center justify-center>
               <v-flex xs12 v-if="IsLogedIn">
-                  c{{IsLogedIn}}
                   <HelloUser />
               </v-flex>
               <v-flex xs12 md8 v-if="!IsLogedIn">
