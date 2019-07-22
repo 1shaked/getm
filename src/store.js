@@ -26,9 +26,9 @@ export default new Vuex.Store({
         start_from : 'תל השומר',
         destination : 'צריפין',
         time : '2019-12-2',
-        user_name : 'שקד',
-        phone : '0585525255',
-        mail : 'shaked1hen@gmail.com'
+        FirstName : 'שקד',
+        Phone : '0585525255',
+        Email : 'shaked1hen@gmail.com'
       },
       {
         tranfer_type : 'eqe',
@@ -37,9 +37,9 @@ export default new Vuex.Store({
         start_from : 'עיר הבהדים',
         destination : 'קרייה',
         time : '2019-12-1',
-        user_name : 'David',
-        phone : '0526642723',
-        mail : 'henDavid@gmail.com'
+        FirstName : 'David',
+        Phone : '0526642723',
+        Email : 'henDavid@gmail.com'
       },
       {
         tranfer_type : 'people',
@@ -48,9 +48,9 @@ export default new Vuex.Store({
         start_from : 'גלילות',
         destination : 'שיטפון',
         time : '2019-12-2',
-        user_name : 'משה',
-        phone : '0542242933',
-        mail : 'mosh@gmail.com'
+        FirstName : 'משה',
+        Phone : '0542242933',
+        Email : 'mosh@gmail.com'
       },
       {
         tranfer_type : 'eqe',
@@ -59,9 +59,9 @@ export default new Vuex.Store({
         start_from : 'עיר הבהדים',
         destination : 'שיטפון',
         time : '2019-12-1',
-        user_name : 'רותי',
-        phone : '051224272',
-        mail : 'RotiHagag@gmail.com'
+        FirstName : 'רותי',
+        Phone : '051224272',
+        Email : 'RotiHagag@gmail.com'
       }
     ]
   },
@@ -100,7 +100,7 @@ export default new Vuex.Store({
       console.log(request);
       
       let request_deatils = {
-        user_name : state.user.FirstName,
+        FirstName : state.user.FirstName,
         tranfer_type : request.tranfer_type,
         tranfer_carray : request.tranfer_carray,
         comments : request.comments,
@@ -140,6 +140,15 @@ export default new Vuex.Store({
             state.password = user.Password;
           }
         });
+    },
+    GetRequestRidesM:(state) =>
+    {
+      axios.get('/api/rides/get/requests')
+      .then(respond =>
+        {
+          console.log(respond);
+          Vue.set(state , 'requests' , respond.data);
+        });
     }
   },
   actions: {
@@ -154,6 +163,10 @@ export default new Vuex.Store({
     SignUp({commit} , user)
     {
       commit('SignUpM' , user);
+    },
+    GetRequestRides({commit})
+    {
+      commit('GetRequestRidesM');
     }
   }
 })

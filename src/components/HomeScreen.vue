@@ -34,7 +34,7 @@
               <v-flex xs12 md8>
                   <!--req in prograss nav-->
                   <v-btn color='deep-orange lighten-3' block class="button"
-                  to="/requested_rides">
+                  v-on:click="GetRides">
                       בקשות בתהליך
                   </v-btn>
               </v-flex>
@@ -63,7 +63,14 @@ export default {
         }
     },
     methods: {
-        
+        ...mapActions([
+            'GetRequestRides'
+        ]),
+        GetRides()
+        {
+            this.GetRequestRides();
+            this.$router.push({ path: 'requested_rides' });
+        }
     },
     computed: {
         ...mapGetters([

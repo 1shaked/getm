@@ -12,7 +12,7 @@
                         <v-list-tile-content>
                             <v-list-tile-title>
                                 <!--v-html="item.tranfer_carray"-->
-                                {{ item.user_name }}
+                                {{ item.FirstName }}
                             </v-list-tile-title>
                             <v-list-tile-sub-title>
                                 {{ item.tranfer_type }} -- {{ item.tranfer_carray }}
@@ -29,14 +29,20 @@
             <v-flex xs12 sm6>
                 <v-card dark>
                     <v-card-title>
-                        {{Chosen_request.user_name}} מבקש להעביר {{ Chosen_request.tranfer_type}}
+                        {{Chosen_request.FirstName}} 
+                        <span v-if="Chosen_request.tranfer_type == 'eqe'">מבקש להעביר ציוד </span>
+                        <span v-else-if="Chosen_request.tranfer_type == 'people'">מבקש להעביר אנשים </span>
                     </v-card-title>
                     <v-card-text>
-                        הגודל של המשלוח הוא : {{Chosen_request.tranfer_carray}}
+                        הגודל של המשלוח הוא : {{ Chosen_request.carry }}
                         <br>
                         הנסיעה היא מ{{Chosen_request.start_from}} עד {{Chosen_request.destination}}
                         <br>
                         מסר מהנוסע : {{ Chosen_request.comments }}
+                        <br>
+                        מספר טלפון - {{ Chosen_request.Phone }}
+                        <br>
+                        מייל - {{ Chosen_request.Email }}
                     </v-card-text>
                     <v-card-actions>
                         <v-btn>
