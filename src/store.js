@@ -102,7 +102,7 @@ export default new Vuex.Store({
       let request_deatils = {
         FirstName : state.user.FirstName,
         tranfer_type : request.tranfer_type,
-        tranfer_carray : request.tranfer_carray,
+        carry : request.carry,
         comments : request.comments,
         destination : request.destination,
         start_from : request.start_from,
@@ -112,7 +112,7 @@ export default new Vuex.Store({
 
       let data_to_server = {
         tranfer_type : request.tranfer_type,
-        tranfer_carray : request.tranfer_carray,
+        carry : request.carry,
         comments : request.comments,
         destination : request.destination,
         start_from : request.start_from,

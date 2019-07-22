@@ -15,7 +15,13 @@
                                 {{ item.FirstName }}
                             </v-list-tile-title>
                             <v-list-tile-sub-title>
-                                {{ item.tranfer_type }} -- {{ item.tranfer_carray }}
+                                <span v-if="item.tranfer_type == 'eqe'">
+                                    ציוד 
+                                </span>
+                                <span v-else-if="item.tranfer_type == 'people'">
+                                    אנשים
+                                </span>
+                                -- {{ item.carry }}
                                 <div></div>
                                 מ{{ item.start_from }} : ל{{ item.destination }}
                             </v-list-tile-sub-title>

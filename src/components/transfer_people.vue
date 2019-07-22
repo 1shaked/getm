@@ -52,11 +52,11 @@ export default {
     CreateTranferPeople()
     {
       let tranfer_type = 'people';
-      let tranfer_carray = this.tranfer_carray;
+      let carry = this.tranfer_carray;
       let comments = this.comments;
       let start_from = this.start_from;
       let destination = this.destination;
-      let request_details = {tranfer_type , tranfer_carray , comments , start_from  , destination}
+      let request_details = {tranfer_type , carry , comments , start_from  , destination}
       this.OpenRequest(request_details);
       this.$router.push({ path: '/' });
 
