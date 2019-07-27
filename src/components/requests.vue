@@ -55,11 +55,17 @@
                 </v-card>
             </v-flex>
         </v-layout>
+        <v-layout row wrap>
+            <v-flex xs12 md8>
+                <chat></chat>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 <script>
 /* eslint-disable */
 import { mapActions, mapState , mapGetters} from 'vuex'
+import chat from './chat.vue';
 export default {
     data() {
         return {
@@ -77,9 +83,14 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'ChooseChat'
+        ]),
         ChooseReques(request)
         {
             this.Chosen_request = request;
+            console.log(`request has chosen`);
+            this.ChooseChat(request);
         }
     },
     computed: {
@@ -91,6 +102,9 @@ export default {
             return this.Chosen_request
         }
     },
+    components : {
+        chat
+    }
     
 }
 </script>

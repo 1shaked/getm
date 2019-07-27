@@ -45,6 +45,14 @@
                       יצירת בקשה
                   </v-btn>
               </v-flex>
+              <v-flex xs12 md8 v-if="IsLogedIn">
+                  <!--open req nav-->
+                  <v-btn block color='cyan lighten-4'
+                  class="button"
+                   to="/new_routes">
+                      יצירת נסיעה
+                  </v-btn>
+              </v-flex>
           </v-layout>
       </v-container>
   </v-app>

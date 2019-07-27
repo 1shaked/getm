@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
@@ -5,6 +6,7 @@ import Login from './views/Login.vue'
 import OpenRequest from './views/OpenRequest.vue'
 import signUp from './views/signUp.vue'
 import RequestedRides from './views/ReqestedRides.vue'
+import NewRoutes from './views/NewRoutes.vue'
 
 Vue.use(Router)
 /* eslint-disable */
@@ -34,6 +36,11 @@ export default new Router({
       path : "/requested_rides",
       name : 'requested_rides',
       component : RequestedRides
+    },
+    {
+      path : "/new_routes",
+      name : 'new_routes',
+      component : NewRoutes
     },
     {
       path: '/about',

@@ -18,6 +18,21 @@ export default new Vuex.Store({
         password : 'Password',
       */
     },
+    chat : [
+      {
+        sender_id : 1,
+        recevier_id : 0,
+        msg : 'msg',
+        time : '14:50'
+      },
+      {
+        sender_id : 0,
+        recevier_id : 1,
+        msg : 'content',
+        time : '14:53'
+      }
+    ],
+    request_clicked_for_chat : {},
     requests : [
       {
         tranfer_type : 'people',
@@ -123,7 +138,7 @@ export default new Vuex.Store({
       .then(respond =>
         {
           console.log(respond);
-        })
+        });
       state.requests.push(request_deatils);
     },
     SignUpM:(state , user) =>
@@ -149,6 +164,23 @@ export default new Vuex.Store({
           console.log(respond);
           Vue.set(state , 'requests' , respond.data);
         });
+    },
+    CreateRouteM:(state , route_deatils) =>
+    {
+      console.log(route_deatils);
+
+      axios.post('/api/rides/posts/new_rides' , route_deatils)
+      .then(respond =>
+        {
+          console.log(respond);
+        });
+    },
+    SendChatM:(state , msg_object) =>
+    {
+      console.log(msg_object);
+      
+      state.chat.push(msg_object);
+      //TODO: axios post request to send
     }
   },
   actions: {
@@ -167,6 +199,28 @@ export default new Vuex.Store({
     GetRequestRides({commit})
     {
       commit('GetRequestRidesM');
+    },
+    CreateRoute({commit , state} , route_deatils)
+    {
+      route_deatils['ID'] = state.user.ID;
+      commit('CreateRouteM' , route_deatils);
+    },
+    SendChat({commit , state} , msg)
+    {
+      let recevier_id = state.request_clicked_for_chat.ID;
+      let sender_id = state.user.ID;
+      console.log(recevier_id);
+      console.log(sender_id);
+      let msg_object = {
+        recevier_id,
+        sender_id,
+        msg
+      }
+      commit('SendChatM' , msg_object);
+    },
+    ChooseChat({state}  , request_deatils)
+    {
+      Vue.set(state , 'request_clicked_for_chat' , request_deatils);
     }
   }
 })
