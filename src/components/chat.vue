@@ -4,7 +4,7 @@
                 <v-container fill-height>
                 <v-layout align-center>
                     <v-flex>
-                        <span class="subheading">-- {{ request_clicked_for_chat }}  צא'ט</span>
+                        <span class="subheading">צא'ט</span>
                         <v-divider class="my-3"></v-divider>
                     </v-flex>
                 </v-layout>
@@ -20,7 +20,7 @@
                 <v-flex xs12 style="border: 1px solid red"
                 v-for="msg in chat" :key="msg.time">
                 <v-container>
-                    {{msg}}
+                    {{msg.msg}}
                 </v-container>
                 </v-flex>
             </v-layout>
@@ -42,9 +42,12 @@ export default {
         ]),
         send()
         {
-            alert(this.new_msg);
-
-            this.SendChat(this.new_msg);
+            //alert(this.new_msg);
+            if (this.new_msg != '' || this.new_msg != null)
+            {
+                this.SendChat(this.new_msg);
+            }
+            this.new_msg = '';
         }
     },
     computed: {

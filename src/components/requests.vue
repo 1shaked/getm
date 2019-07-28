@@ -48,7 +48,7 @@
                         מייל - {{ Chosen_request.Email }}
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn>
+                        <v-btn v-on:click="Contact">
                             צור קשר
                         </v-btn>
                     </v-card-actions>
@@ -84,13 +84,22 @@ export default {
     },
     methods: {
         ...mapActions([
-            'ChooseChat'
+            'ChooseChat',
+            'GetChatMsg'
         ]),
         ChooseReques(request)
         {
             this.Chosen_request = request;
             console.log(`request has chosen`);
             this.ChooseChat(request);
+            console.log(request);
+            
+        },
+        Contact()
+        {
+            this.GetChatMsg()
+            //this.Chosen_request
+            //alert(Object.keys(this.Chosen_request) );
         }
     },
     computed: {

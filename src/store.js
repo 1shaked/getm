@@ -181,6 +181,25 @@ export default new Vuex.Store({
       
       state.chat.push(msg_object);
       //TODO: axios post request to send
+      axios.post('/api/rides/posts/chat_msg' , msg_object)
+      .then((respond) =>
+      {
+        console.log(`msg was sended fine the respond is ---`);
+        console.log(respond);
+      })
+    },
+    GetChatMsgM:(state , chat_object) =>
+    {
+      let sender_id = chat_object.sender_id;
+      let reciver_id = chat_object.recevier_id;
+      axios.get('/api/rides/get/chat_conv' , { params : {sender_id , reciver_id}})
+      .then(respond =>
+        {
+          console.log(`the chat is ------`);
+          console.log(respond);
+          //state.chat
+          Vue.set(state , 'chat' , respond.data);
+        });
     }
   },
   actions: {
@@ -217,10 +236,18 @@ export default new Vuex.Store({
         msg
       }
       commit('SendChatM' , msg_object);
+      commit('GetChatMsgM' , msg_object);
     },
     ChooseChat({state}  , request_deatils)
     {
       Vue.set(state , 'request_clicked_for_chat' , request_deatils);
+    },
+    GetChatMsg({commit  , state})
+    {
+      let recevier_id = state.request_clicked_for_chat.ID;
+      let sender_id = state.user.ID;
+      let chat_obj = {recevier_id , sender_id};
+      commit('GetChatMsgM' , chat_obj) 
     }
   }
 })
