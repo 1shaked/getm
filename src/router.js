@@ -7,6 +7,8 @@ import OpenRequest from './views/OpenRequest.vue'
 import signUp from './views/signUp.vue'
 import RequestedRides from './views/ReqestedRides.vue'
 import NewRoutes from './views/NewRoutes.vue'
+import GloryState from './views/GloryState.vue'
+
 
 Vue.use(Router)
 /* eslint-disable */
@@ -41,6 +43,11 @@ export default new Router({
       path : "/new_routes",
       name : 'new_routes',
       component : NewRoutes
+    },
+    {
+      path : "/glory_state",
+      name : 'glory_state',
+      component : GloryState
     },
     {
       path: '/about',

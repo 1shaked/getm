@@ -4,6 +4,7 @@
             <v-flex xs12 sm6 offset-sm3>
                 <v-card>
                     <v-list two-line>
+                        {{ Chosen_request.rowNumber }}
                     <template v-for="(item, index) in requests">
                         <v-list-tile v-on:click="ChooseReques(item)"
                         :key="index"
@@ -13,6 +14,7 @@
                             <v-list-tile-title>
                                 <!--v-html="item.tranfer_carray"-->
                                 {{ item.FirstName }}
+                                {{ item.rowNumber }}
                             </v-list-tile-title>
                             <v-list-tile-sub-title>
                                 <span v-if="item.tranfer_type == 'eqe'">ציוד</span>
@@ -47,10 +49,15 @@
                         <br>
                         מייל - {{ Chosen_request.Email }}
                     </v-card-text>
-                    <v-card-actions>
-                        <v-btn v-on:click="Contact">
+                    <v-card-actions v-if="UserID != Chosen_request.ID">
+                        <v-container>
+                            <v-btn v-on:click="Contact">
                             צור קשר
-                        </v-btn>
+                            </v-btn>
+                        </v-container>
+                        <v-container>
+                            <v-btn color="primary" v-on:click="send_msg = !send_msg">אשר נסיעה</v-btn>
+                        </v-container>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -60,6 +67,40 @@
                 <chat></chat>
             </v-flex>
         </v-layout>
+        <v-dialog
+      v-model="send_msg"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">שלום אנא תרשום מה אתה רוצה לשלוח במייל? לגבי הנסיעה</v-card-title>
+
+        <v-card-text>
+            <v-text-field
+            label="הודעה חדשה"
+            v-model="msg_to_send">
+            </v-text-field>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            text
+            @click="send_msg = false"
+          >
+            בטל
+          </v-btn>
+
+          <v-btn
+            color="green darken-2"
+            text
+            @click="AprovedRide"
+          >
+            שלח
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     </v-container>
 </template>
 <script>
@@ -79,13 +120,16 @@ export default {
                 user_name : 'רותי',
                 phone : '051224272',
                 mail : 'RotiHagag@gmail.com'
-            }
+            },
+            send_msg : false,
+            msg_to_send : ''
         }
     },
     methods: {
         ...mapActions([
             'ChooseChat',
-            'GetChatMsg'
+            'GetChatMsg',
+            'AprovedRides'
         ]),
         ChooseReques(request)
         {
@@ -100,11 +144,24 @@ export default {
             this.GetChatMsg()
             //this.Chosen_request
             //alert(Object.keys(this.Chosen_request) );
+        },
+        AprovedRide()
+        {
+            this.send_msg = false;
+            let object_to_send = this.Chosen_request;
+            object_to_send['msg_content'] = this.msg_to_send;
+            //
+            this.AprovedRides(object_to_send);
+            alert('הודעת נשלחה מחכה לאישור יום טוב');
         }
     },
     computed: {
         ...mapState([
-            'requests'
+            'requests',
+
+        ]),
+        ...mapGetters([
+            'UserID'
         ]),
         Request()
         {

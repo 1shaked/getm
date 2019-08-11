@@ -20,7 +20,9 @@
                 <v-flex xs12 style="border: 1px solid red"
                 v-for="msg in chat" :key="msg.time">
                 <v-container>
-                    {{msg.msg}}
+                    {{ msg.msg }}
+                    <v-spacer></v-spacer>
+                    {{ msg.time }}
                 </v-container>
                 </v-flex>
             </v-layout>

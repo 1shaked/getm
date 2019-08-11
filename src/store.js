@@ -16,9 +16,11 @@ export default new Vuex.Store({
         FirstName : 'myFname',
         LastName : 'LName',
         password : 'Password',
+        ID : someNumber
       */
     },
     chat : [
+      /*
       {
         sender_id : 1,
         recevier_id : 0,
@@ -31,8 +33,12 @@ export default new Vuex.Store({
         msg : 'content',
         time : '14:53'
       }
+      */
     ],
     request_clicked_for_chat : {},
+    glory_state : [
+
+    ],
     requests : [
       {
         tranfer_type : 'people',
@@ -78,12 +84,27 @@ export default new Vuex.Store({
         Phone : '051224272',
         Email : 'RotiHagag@gmail.com'
       }
+    ],
+    rides_to_approve : [  
+      {
+        destination: "תל השומר",
+        driver_id: 8462161,
+        driver_name : "מר חן",
+        passenger_id: 5,
+        request_id: 4,
+        requst_time: "2019-07-22 09:20:20",
+        start_from: "גלילות",
+      }
     ]
   },
   getters : {
     IsLogedIn : (state) =>
     {
       return Object.keys(state.user).length != 0;
+    },
+    UserID(state)
+    {
+      return state.user.ID;
     }
   },
   mutations: {
@@ -104,8 +125,7 @@ export default new Vuex.Store({
             Vue.set(state , 'user' , {});
           }
         });
-      //state.user_name = user.user_name;
-      //state.password  = user.password;
+        
     },
     OpenRequestM:(state , request) =>
     {
@@ -200,6 +220,46 @@ export default new Vuex.Store({
           //state.chat
           Vue.set(state , 'chat' , respond.data);
         });
+    },
+    AprovedRidesM:(state , ride_details) =>
+    {
+      axios.post('/api/rides/posts/srart_driving' , ride_details)
+      .then(respond => 
+        {
+          console.log(`we start the driving`);
+          console.log(respond);          
+        });
+    },
+    GetRidesToApproveM:(state , passenger_id) =>
+    {
+      axios.get('/api/rides/get/rides_to_aprove' , { params : {passenger_id}})
+      .then(respond =>
+        {
+          console.log(`the rides to approved is ------`);
+          console.log(respond);
+          Vue.set(state , 'rides_to_approve' , respond.data); 
+        });
+    },
+    CloseRequestM:(state , ride_details) =>
+    {
+      console.log(ride_details);
+      axios.put('/api/rides/updates/approve_drive' , ride_details)
+      .then(respond =>
+        {
+          //Vue.set(state , requests , )
+          state.rides_to_approve.splice(ride_details.index);
+        });
+      
+    },
+    GetGloryStateM:(state) =>
+    {
+      axios.get('/api/rides/get/most_rides')
+      .then(respond =>
+        {
+          console.log('glory_state ------------------');
+          console.log(respond.data);
+          Vue.set(state , 'glory_state' , respond.data);
+        });
     }
   },
   actions: {
@@ -236,7 +296,7 @@ export default new Vuex.Store({
         msg
       }
       commit('SendChatM' , msg_object);
-      commit('GetChatMsgM' , msg_object);
+      //commit('GetChatMsgM' , msg_object);
     },
     ChooseChat({state}  , request_deatils)
     {
@@ -248,6 +308,33 @@ export default new Vuex.Store({
       let sender_id = state.user.ID;
       let chat_obj = {recevier_id , sender_id};
       commit('GetChatMsgM' , chat_obj) 
+    },
+    AprovedRides({commit , state , getters} , request_ride)
+    {
+      let driver_id = getters.UserID;
+      let passenger_id = request_ride.ID;
+      let email  = request_ride.Email;
+      let request_id = request_ride.rowNumber;
+      let ride_details = {driver_id ,passenger_id, email  , request_id};
+      commit('AprovedRidesM' , ride_details);
+    },
+    GetRidesToApprove({commit , getters})
+    {
+      let passenger_id = getters.UserID;
+      commit('GetRidesToApproveM' , passenger_id);
+    },
+    CloseRequest({commit} , ride_details)
+    {
+      let rowNumber = ride_details.request_id;
+      let request_id = ride_details.request_id;
+      let driver_id = ride_details.driver_id;
+      let index = ride_details.index;
+      let request_obj = {rowNumber , request_id , driver_id , index};
+      commit('CloseRequestM' , request_obj);
+    },
+    GetGloryState({commit})
+    {
+      commit('GetGloryStateM');
     }
   }
 })

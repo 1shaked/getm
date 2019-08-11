@@ -53,6 +53,17 @@
                       יצירת נסיעה
                   </v-btn>
               </v-flex>
+              <v-flex xs12 md8>
+                  <!-- היכל התהילה -->
+                  <v-btn block color='cyan lighten-4'
+                  class="button"
+                  v-on:click="GloryState">
+                        היכל התהילה
+                  </v-btn>
+              </v-flex>
+              <v-flex xs12 md8 v-if="IsLogedIn">
+                  <OptionalRides></OptionalRides>
+              </v-flex>
           </v-layout>
       </v-container>
   </v-app>
@@ -61,9 +72,11 @@
 /* eslint-disable */
 import { mapActions, mapState , mapGetters} from 'vuex'
 import HelloUser from './HelloUser'
+import OptionalRides from './OptionalRides'
 export default {
     components : {
         HelloUser
+        ,OptionalRides
     },
     data() {
         return {
@@ -71,12 +84,18 @@ export default {
     },
     methods: {
         ...mapActions([
-            'GetRequestRides'
+            'GetRequestRides',
+            'GetGloryState'
         ]),
         GetRides()
         {
             this.GetRequestRides();
             this.$router.push({ path: 'requested_rides' });
+        },
+        GloryState()
+        {
+            this.GetGloryState();
+            this.$router.push({ path: 'glory_state' });
         }
     },
     computed: {
